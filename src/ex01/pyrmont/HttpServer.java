@@ -27,6 +27,7 @@ public class HttpServer {
 
   public static void main(String[] args) {
     HttpServer server = new HttpServer();
+    System.out.println("WEB_ROOT="+WEB_ROOT);
     server.await();
   }
 
@@ -64,7 +65,7 @@ public class HttpServer {
         socket.close();
 
         //check if the previous URI is a shutdown command
-        shutdown = request.getUri().equals(SHUTDOWN_COMMAND);
+        shutdown = SHUTDOWN_COMMAND.equals(request.getUri());
       }
       catch (Exception e) {
         e.printStackTrace();

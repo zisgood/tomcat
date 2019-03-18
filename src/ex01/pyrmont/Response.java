@@ -35,10 +35,13 @@ public class Response {
       if (file.exists()) {
         fis = new FileInputStream(file);
         int ch = fis.read(bytes, 0, BUFFER_SIZE);
+          output.write("HTTP/1.0 200 OK\r\n".getBytes());
+          output.write("\r\n".getBytes());// 根据 HTTP 协议, 空行将结束头信息
         while (ch!=-1) {
           output.write(bytes, 0, ch);
           ch = fis.read(bytes, 0, BUFFER_SIZE);
         }
+//          output.flush();
       }
       else {
         // file not found
